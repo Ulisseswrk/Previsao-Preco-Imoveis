@@ -4,6 +4,9 @@ Modelo de regressão que estima o **preço de venda de apartamentos de revenda e
 
 Projeto desenvolvido para o **CheckPoint 5** da disciplina *Data Science & Statistical Computing* (FIAP).
 
+- **Aplicação online:** [predicaoprecoimoveis.streamlit.app](https://predicaoprecoimoveis.streamlit.app/)
+- **Repositório:** [github.com/Ulisseswrk/Previsao-Preco-Imoveis](https://github.com/Ulisseswrk/Previsao-Preco-Imoveis)
+
 ---
 
 ## Sumário
@@ -34,7 +37,7 @@ O modelo escolhido foi o **XGBoost ajustado com Optuna**. Ele foi avaliado **uma
 | **Erro percentual mediano** | 7,4% |
 
 - Metade das previsões fica a menos de **7,4%** do preço real, e o erro percentual é parecido em todas as faixas de preço (7,2% a 7,5%).
-- O RMSE do teste ficou **5,3% abaixo** do RMSE da validação cruzada, uma diferença pequena. O modelo generaliza bem para dados que não viu.
+- O RMSE do teste ficou **5,3% abaixo** do RMSE da validação cruzada, uma diferença pequena. O modelo generaliza bem para dados que não viu. O teste ficou um pouco melhor porque o modelo final foi treinado com todo o treino, enquanto na validação cruzada cada modelo usava 80% dele, e a curva de aprendizado mostra que mais dados reduzem o erro.
 - Para comparação, uma regra simples de mercado (mediana do R$/m² do bairro × área útil) erra **11,7%** na mediana, com RMSE de R$ 184.587.
 
 ---
@@ -243,7 +246,9 @@ previsao = modelo_salvo["pipeline"].predict(dados[modelo_salvo["colunas_x"]])
 
 ## Aplicação Streamlit
 
-O projeto inclui uma aplicação web que usa o `modelo.pkl` para estimar o preço de um imóvel a partir de um formulário. Ela usa o mesmo pipeline do notebook, e as previsões são idênticas às do notebook.
+O projeto inclui uma aplicação web, disponível em **[predicaoprecoimoveis.streamlit.app](https://predicaoprecoimoveis.streamlit.app/)**, que usa o `modelo.pkl` para estimar o preço de um imóvel a partir de um formulário. Ela usa o mesmo pipeline do notebook, e as previsões são idênticas às do notebook.
+
+Para rodar localmente:
 
 ```bash
 streamlit run app.py
